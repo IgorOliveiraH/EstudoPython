@@ -9,7 +9,7 @@ print('joao@email.com',
       'maria@email.com', 
       'pedro@email.com',
       file = arquivo,
-      sep = ';')/
+      sep = ';')
 
 #Entrada
 #input
