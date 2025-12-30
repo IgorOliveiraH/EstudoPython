@@ -16,3 +16,5 @@ nota3 = 5.5
 
 media = calcular_media(nota1,nota2,nota3)
 print (media)
+
+
