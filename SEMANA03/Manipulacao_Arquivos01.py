@@ -24,3 +24,7 @@ arquivo.close()
 arquivo = open("teste2.txt","w")
 arquivo.write ("\nTESTE03")
 arquivo.close()
+
+"exclusão de arquivos - USA NOVA BIBLIOTECA"
+import os
+os.remove("teste2.txt")
