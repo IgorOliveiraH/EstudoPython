@@ -1,0 +1,151 @@
+#1AULA01-NUMPY
+import numpy as np
+
+#2Criando um array basico
+a = np.array([1,2,3,4,5,6])
+print(a)
+print(type(a))
+
+#3Matriz 3D cheia de zeros (5 blocos de 3x6)
+zero_array = np.zeros(shape = (5,3,6))
+print(zero_array)
+
+#4Array com dois numeros 1
+um_array = np.ones(2)
+print(um_array)
+
+#5Array vazio (vem com lixo de memoria)
+vazio_array = np.empty(3)
+print(vazio_array)
+
+#6Sequencia de 0 a 9
+zero_dez = np.arange(10)
+print(zero_dez)
+
+#7Sequencia de 3 a 14 pulando de 2 em 2
+pula_dois = np.arange(3,15,2)
+print(pula_dois)
+
+#8Cria 20 numeros de 0 a 100 bem divididos
+array_linear = np.linspace(0, 100 , num = 20, endpoint = False, retstep = True)
+print(array_linear)
+
+#9Recriando a matriz de zeros
+zero_array = np.zeros(shape = (5,3,6))
+print(zero_array)
+
+#10Mostra o formato tamanho e dimensoes
+print(zero_array.shape)
+print(zero_array.size)
+print(zero_array.ndim)
+
+#11Array 1D pra testar reshape
+a = np.array( [ 1, 2, 3])
+print(a.shape)
+
+#12Transforma em linha 2D
+a2 = a[np.newaxis,:]
+print(a2.shape)
+print(a2)
+
+#13Transforma em coluna 2D
+a2 = a[:,np.newaxis]
+print(a2.shape)
+print(a2)
+
+#14Alterando um valor especifico na matriz
+a2[2][0] = 2
+print(a2)
+
+#15Testando concatenacao
+a = np.array( [1, 2, 3])
+b = np.array( [4, 5, 6])
+
+#16Junta a com b e b com a
+c=np.concatenate((a,b))
+d=np.concatenate((b,a))
+
+print(c)
+print(d)
+
+#17Matriz 2D normal
+a = np.array([[1 , 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]])
+print(a)
+print('------------')
+
+#18Filtro direto so menores que 8
+print(a[a<8])
+
+#19Matematica basica de matriz
+a = np.array( [1, 2, 3])
+
+print(a.max())
+print(a.min())
+print(a.mean())
+print(a.sum())
+
+#20Gerador de numeros aleatorios
+from numpy.random import default_rng
+
+#21Matriz 2x4 com numeros aleatorios ate 10
+rng= default_rng()
+aleatorio = rng.integers(10, size=(2,4))
+print(aleatorio)
+
+#22Comparando array com lista normal do python
+a = np.array([1,3,4,5,6,5,7,8])
+print("Essa é o array 'a':",a)
+print("Esse é tipo de 'a':",type(a))
+print('-------------------------------------')
+lista_a=[1,3,4,5,6,5,7,8]
+print("Essa é a 'lista_a':", lista_a)
+print("Esse é tipo de 'lista_a':",type(lista_a))
+
+#23Array converte tudo pra string se tiver uma no meio
+a = np.array([1,'Daniel',2,3,4,5,6,7,8])
+print(a)
+print(type(a[0]))
+
+#24Lista mantem o tipo original de cada item
+lista_a = [1,'Daniel',2,3,4,5,6,7,8]
+print(a)
+print(type(lista_a[0]))
+
+#25Teste de velocidade de execucao
+from time import process_time
+lista_a = list(rng.integers(10, 100, 10000000))
+print(type(lista_a))
+lista_b = list(rng.integers(10, 100, 10000000))
+#26Isso aqui vai dar erro em lista python pura
+c = lista_a*lista_b
+
+print(type(lista_a))
+print(len(lista_a))
+
+#27Multiplicando listas com for demora bastante
+c=[]
+t1 = process_time()
+for i in range(len(lista_a)):
+    c.append(lista_a[i] * lista_b[i])
+t2 = process_time()
+
+print(t2-t1)
+
+#28Multiplicando direto no numpy muito mais rapido
+a = rng.integers(10, 100, 10000000)
+b = rng.integers(10, 100, 10000000)
+print(type(a))
+print(a)
+t1a=process_time()
+c=a*b
+t2a=process_time()
+print(t2a-t1a)
+
+#29Grafico de dispersao rapidao
+import matplotlib.pyplot as plt
+
+dados_x = rng.integers(20, size = 30)
+dados_y = rng.integers(12, size = 30)
+
+plt.scatter(x = dados_x, y = dados_y)
+plt.show()
