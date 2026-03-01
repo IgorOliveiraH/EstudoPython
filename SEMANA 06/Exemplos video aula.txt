@@ -1,0 +1,66 @@
+"""Exemplos da video aula"""
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+#Define o estilo visual padrão dos gráficos (o estilo 'ggplot' deixa o fundo cinza com grades brancas)
+plt.style.use('ggplot')
+
+# --- Preparação dos dados para o eixo X ---
+# x_trig: cria 100 pontos igualmente espaçados entre 0 e 2*Pi (ideal para gráficos de seno/cosseno)
+x_trig = np.linspace(0, 2 * np.pi, 100) 
+# x_int: cria uma sequência de 0 a 10 com passos de 0.1 (0.0, 0.1, 0.2...)
+x_int = np.arange(0, 10, 0.1)           
+
+#Cria a figura principal (fig) e uma grade de subgráficos (axs) com 2 linhas e 2 colunas
+#figsize=(12, 8) define a largura e a altura da janela final em polegadas
+fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(12, 8))
+
+# Plota a função cosseno usando os dados de x_trig. Define a cor azul e espessura da linha como 2
+axs[0, 0].plot(x_trig, np.cos(x_trig), color='blue', linewidth=2)
+axs[0, 0].set_title('Gráfico básico (Cosseno)') # Título específico deste subgráfico
+axs[0, 0].set_xlabel('Tempo (s)')               # Rótulo do eixo X
+axs[0, 0].set_ylabel('Amplitude')               # Rótulo do eixo Y
+
+# Plota as funções cosseno e seno no mesmo gráfico para comparação
+# 'label' dá um nome para a linha aparecer na legenda, 'linestyle' muda o tipo do traço
+axs[0, 1].plot(x_trig, np.cos(x_trig), label='Cosseno', linestyle='--')
+axs[0, 1].plot(x_trig, np.sin(x_trig), label='Seno', color='red')
+axs[0, 1].set_title('Seno e cosseno sobrepostos')
+axs[0, 1].legend() # Exibe a caixa de legenda usando os 'labels' definidos nas linhas acima
+
+
+# Cria uma curva quadrática (elevando os dados de x_int ao quadrado) e plota em verde
+y_quad = x_int ** 2
+axs[1, 0].plot(x_int, y_quad, color='green')
+axs[1, 0].set_title('Marcadores e linhas paralelas')
+
+# Adiciona um marcador (um ponto destacado) especificamente na coordenada (x=5, y=25)
+axs[1, 0].plot(5, 25, marker='o', color='black', markersize=8) 
+
+# Desenha linhas pontilhadas ('linha de chamada') que vão até o marcador
+# axhline cria uma linha horizontal no y=25, xmax=0.5 faz ela ir só até a metade do gráfico
+axs[1, 0].axhline(25, color='gray', linestyle=':', xmax=0.5) 
+# axvline cria uma linha vertical no x=5, ymax=0.25 limita a altura da linha
+axs[1, 0].axvline(5, color='gray', linestyle=':', ymax=0.25) 
+
+# Plota uma função exponencial (e elevado a x_int/3) usando a cor roxa
+axs[1, 1].plot(x_int, np.exp(x_int / 3), color='purple')
+axs[1, 1].set_title('Inserindo texto customizado')
+
+# Adiciona um bloco de texto dentro do gráfico na posição (x=2, y=10)
+# 'bbox' cria uma caixa de fundo ao redor do texto, com fundo branco e 70% opaco (alpha=0.7)
+axs[1, 1].text(2, 10, 'Curva exponencial\ncresce rápido!', fontsize=10, color='black',
+               bbox=dict(facecolor='white', alpha=0.7)) 
+
+
+# Adiciona um título geral que ficará no topo de toda a janela da figura
+plt.suptitle('Curso Matplotlib', fontsize=16, fontweight='bold')
+
+# Organiza automaticamente o layout para que os textos, títulos e eixos não se sobreponham
+plt.tight_layout() 
+# Ajusta o topo da grade de subgráficos dando um espaço (0.90) para o super título não encavalar
+plt.subplots_adjust(top=0.90) 
+
+# Renderiza e mostra a figura na tela
+plt.show()
